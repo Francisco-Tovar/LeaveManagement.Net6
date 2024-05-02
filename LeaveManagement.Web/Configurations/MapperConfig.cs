@@ -8,7 +8,7 @@ namespace LeaveManagement.Web.Configurations
     {
         public MapperConfig()
         {
-            CreateMap<LeaveType, LeaveTypeViewModel>().ReverseMap();
+            CreateMap<LeaveType, LeaveTypeVM>().ReverseMap();
         }
     }
 }

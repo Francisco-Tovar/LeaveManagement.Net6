@@ -25,7 +25,7 @@ namespace LeaveManagement.Web.Controllers
         // GET: LeaveTypes
         public async Task<IActionResult> Index()
         {
-            var _leaveTypes = mapper.Map<List<LeaveTypeViewModel>>(await _context.LeaveTypes.ToListAsync());
+            var _leaveTypes = mapper.Map<List<LeaveTypeVM>>(await _context.LeaveTypes.ToListAsync());
             return View(_leaveTypes);
         }
 
@@ -58,15 +58,16 @@ namespace LeaveManagement.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,DefaultDays,Id,DateCreated,DateModified")] LeaveType leaveType)
+        public async Task<IActionResult> Create([Bind("Name,DefaultDays,Id,DateCreated,DateModified")] LeaveTypeVM leaveTypeVM)
         {
             if (ModelState.IsValid)
             {
+                LeaveType leaveType = mapper.Map<LeaveType>(leaveTypeVM);
                 _context.Add(leaveType);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(leaveType);
+            return View(leaveTypeVM);
         }
 
         // GET: LeaveTypes/Edit/5
