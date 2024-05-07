@@ -58,7 +58,7 @@ namespace LeaveManagement.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,DefaultDays,Id,DateCreated,DateModified")] LeaveTypeVM leaveTypeVM)
+        public async Task<IActionResult> Create(LeaveTypeVM leaveTypeVM)
         {
             if (ModelState.IsValid)
             {
@@ -83,6 +83,8 @@ namespace LeaveManagement.Web.Controllers
             {
                 return NotFound();
             }
+
+            LeaveTypeVM leaveTypeVm = mapper.Map<LeaveTypeVM>(leaveType);
             return View(leaveType);
         }
 
