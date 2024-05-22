@@ -148,13 +148,11 @@ namespace LeaveManagement.Web.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var leaveType = await _context.LeaveTypes.FindAsync(id);
-            if (leaveType != null)
-            {
-                _context.LeaveTypes.Remove(leaveType);
-            }
-
+            _context.LeaveTypes.Remove(leaveType);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
+
         }
 
         private bool LeaveTypeExists(int id)
