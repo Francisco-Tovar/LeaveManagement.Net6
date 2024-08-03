@@ -10,7 +10,7 @@ namespace LeaveManagement.Web.Configurations
         {
             CreateMap<LeaveType, LeaveTypeReadOnlyVM>();
 
-            CreateMap<LeaveTypeEditVM, LeaveType>();
+            CreateMap<LeaveTypeCreateVM, LeaveType>();
 
             CreateMap<LeaveTypeEditVM, LeaveType>().ReverseMap();
         }
